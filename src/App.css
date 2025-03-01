@@ -76,7 +76,25 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+::-webkit-scrollbar {
+  width: 2px;
+}
 
-/* input[type="number"] {
-  -moz-appearance: textfield;
-} */
+::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: silver;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: black #f1f1f1;
+}

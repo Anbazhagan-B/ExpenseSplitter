@@ -1,16 +1,16 @@
 import logo from "../../stock-vector-coin.jpg";
 import MyInput from "../../controls/MyInput/myInput";
 import Button from "../../controls/Button/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import API_HEADERS from "../../Constants/headers.js";
-import Constants from "../../Constants/constants.js";
-import useApi from "../../hooks/useApi.js";
 import Loading from "../../controls/Loading/Loading.js";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../redux/apiSlice.js";
 
-const RegisterComponent = (props) => {
+const RegisterComponent = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.api);
   const [showMyLoader, setShowMyLoader] = useState(false);
   const [userData, setUserData] = useState({
     username: "",
@@ -25,22 +25,18 @@ const RegisterComponent = (props) => {
 
   const onRegisterUser = async (e) => {
     e.preventDefault();
+    dispatch(registerUser(userData));
     try {
-      // const { showLoader } = useApi(userData, Constants.REGISTER_USER_API_URL);
-      // setShowMyLoader(showLoader);
-      // const response = await axios.post(
-      //   Constants.REGISTER_USER_API_URL,
-      //   userData,
-      //   {
-      //     headers: API_HEADERS,
-      //   }
-      // );
-      // navigate("./home");
-      // console.log("Success" + JSON.stringify(response));
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    if (user?.id > 0) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   return (
     <div className="container">

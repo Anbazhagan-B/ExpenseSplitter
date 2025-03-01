@@ -1,6 +1,9 @@
 .home-container {
   display: flex;
   flex-direction: column;
+  h2 {
+    text-align: center;
+  }
   .button-section {
     display: flex;
     flex-direction: row;
@@ -8,6 +11,7 @@
     padding: 10px;
     .home-button {
       min-width: 50%;
+      min-height: 150px;
     }
   }
 }

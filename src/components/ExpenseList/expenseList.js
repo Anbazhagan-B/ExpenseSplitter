@@ -1,33 +1,15 @@
 import React, { useState, useEffect, useMemo } from "react";
 import "./expenseList.css";
 import ExpenseItem from "../ExpenseItem/expenseitem";
+import useFetchData from "../../hooks/useFetchData";
 const ExpenseList = (props) => {
   const { userId } = props;
-  const [expenses, setExpenses] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchExpenses = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8024/expenses/user/${userId}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch expenses");
-        }
-        const data = await response.json();
-        setExpenses(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    if (userId) {
-      fetchExpenses();
-    }
-  }, [userId]);
+  const {
+    data: expenses,
+    loading,
+    error,
+  } = useFetchData(`http://localhost:8024/expenses/user/${userId}`, [userId]);
 
   const groupedExpenses = useMemo(() => {
     return expenses.reduce((acc, expense) => {

@@ -25,8 +25,17 @@ export const getExpenses = createAsyncThunk(
 
 const apiSlice = createSlice({
   name: "api",
-  initialState: { showLoader: false, data: null, error: null },
-  reducers: {},
+  initialState: {
+    showLoader: false,
+    data: null,
+    error: null,
+    headerTitle: "Expense Splitter",
+  },
+  reducers: {
+    setHeaderTitle: (state, action) => {
+      state.headerTitle = action.payload;
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -56,5 +65,7 @@ const apiSlice = createSlice({
       });
   },
 });
+
+export const { setHeaderTitle } = apiSlice.actions;
 
 export default apiSlice.reducer;

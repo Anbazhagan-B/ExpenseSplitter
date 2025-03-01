@@ -1,33 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { FaUsers } from "react-icons/fa";
 import "./groupListComponent.css";
+import useFetchData from "../../hooks/useFetchData";
+import Constants from "../../Constants/constants";
 
 const GroupListComponent = () => {
-  const [groups, setGroups] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchGroups = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:8024/groups/getAllGroups"
-        );
-        const data = await response.json();
-        setGroups(data);
-      } catch (error) {
-        console.error("Error fetching groups:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchGroups();
-  }, []);
-
+  const { data: groups, loading } = useFetchData(Constants.GET_ALL_GROUPS);
   return (
     <div className="group-list-container">
-      <h2>My Groups</h2>
-
       {loading ? (
         <p>Loading groups...</p>
       ) : (

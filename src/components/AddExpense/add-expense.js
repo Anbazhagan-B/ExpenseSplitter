@@ -75,24 +75,26 @@ const AddExpense = () => {
 
   return (
     <div className="add-expense-component">
-      <h2>Add Expense</h2>
       <form onSubmit={handleSubmit} className="expense-form">
         <div className="input-group">
           <FaUsers className="icon" />
-          <select value={expenseType} onChange={handleExpenseTypeChange}>
+          <select
+            className="custom-select"
+            value={expenseType}
+            onChange={handleExpenseTypeChange}
+          >
             <option value="INDIVIDUAL">Individual Expense</option>
             <option value="GROUP">Group Expense</option>
           </select>
         </div>
 
-        <div className="input-group">
-          <FaUser className="icon" />
-          {expenseType === "INDIVIDUAL" ? (
-            <UserList onSelectUser={handleUserSelectionChange} />
-          ) : (
+        {expenseType == "GROUP" ? (
+          <div className="input-group">
             <SelectGroupList onSelectGroup={handleGroupSelectionChange} />
-          )}
-        </div>
+          </div>
+        ) : (
+          <UserList onSelectUser={handleUserSelectionChange} />
+        )}
 
         <div className="input-group">
           <FaMoneyBillWave className="icon" />

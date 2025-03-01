@@ -1,24 +1,9 @@
-import React, { useEffect, useState } from "react";
 import Constants from "../../Constants/constants";
+import useFetchData from "../../hooks/useFetchData";
 
 const SelectGroupList = ({ onSelectGroup }) => {
-  const [groups, setGroups] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { data: groups, loading } = useFetchData(Constants.GET_ALL_GROUPS);
 
-  useEffect(() => {
-    const fetchGroups = async () => {
-      try {
-        const response = await fetch(Constants.GET_ALL_GROUPS);
-        const data = await response.json();
-        setGroups(data);
-      } catch (error) {
-        console.error("Error fetching groups:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchGroups();
-  }, []);
   const handleGroupSelection = (e) => {
     e.preventDefault();
     const selectedGroupId = parseInt(e.target.value);

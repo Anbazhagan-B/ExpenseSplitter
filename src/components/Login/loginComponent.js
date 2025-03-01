@@ -4,27 +4,17 @@ import Button from "../../controls/Button/button";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Constants from "../../Constants/constants";
-import useApi from "../../hooks/useApi.js";
-import Loading from "../../controls/Loading/Loading.js";
 import { loginUser } from "../../redux/apiSlice.js";
 
 const LoginComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [triggerLogin, setTriggerLogin] = useState(false);
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
   const { user } = useSelector((state) => state.api);
-  // const { responseData, showLoader, errorResponse } = useApi(
-  //   triggerLogin ? Constants.LOGIN_API_URL : null,
-  //   "POST",
-  //   triggerLogin ? loginData : null
-  // );
-
   const onInputChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
@@ -32,11 +22,6 @@ const LoginComponent = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     try {
-      // const response = await , axios.post(Constants.LOGIN_API_URL, loginData, {
-      //   headers: API_HEADERS,
-      // });
-      // navigate("./home");
-      //setTriggerLogin(true);
       dispatch(loginUser(loginData));
     } catch (err) {
       alert("error" + JSON.stringify(err));

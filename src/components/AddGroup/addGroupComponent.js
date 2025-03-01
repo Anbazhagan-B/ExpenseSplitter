@@ -4,30 +4,13 @@ import { useNavigate } from "react-router-dom";
 import MyInput from "../../controls/MyInput/myInput";
 import "./addGroupComponent.css";
 import Button from "../../controls/Button/button";
+import useFetchData from "../../hooks/useFetchData";
 
 const AddGroupComponent = () => {
   const [groupName, setGroupName] = useState("");
-  const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const { data: users, loading } = useFetchData(Constants.GET_USERS_WITH_ID);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(Constants.GET_USERS_WITH_ID);
-        const data = await response.json();
-        setUsers(data);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUsers();
-  }, []);
 
   const handleCheckboxChange = (userId) => {
     setSelectedUsers((prev) =>
