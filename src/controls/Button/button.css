@@ -1,0 +1,7 @@
+button {
+  background: black;
+  color: white;
+  border: 5px;
+  min-width: 260px;
+  min-height: 40px;
+}

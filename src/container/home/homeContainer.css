@@ -1,0 +1,13 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  .button-section {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding: 10px;
+    .home-button {
+      min-width: 50%;
+    }
+  }
+}

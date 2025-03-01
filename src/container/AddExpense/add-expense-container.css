@@ -1,0 +1,4 @@
+.add-expense-container {
+  display: flex;
+  flex-direction: column;
+}
