@@ -1,0 +1,7 @@
+.expense-list {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 20px;
+  color: white;
+}

@@ -1,0 +1,43 @@
+.expense-item {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 10px;
+  margin: 8px 0;
+  border: medium solid black;
+  color: black;
+  justify-content: space-between;
+}
+
+.date-box {
+  text-align: center;
+  background: black;
+  padding: 10px;
+  border-radius: 0px;
+  margin-right: 10px;
+}
+
+.month {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.day {
+  font-size: 18px;
+}
+
+.user-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.category {
+  flex: 1;
+  font-weight: bold;
+}
+
+.amount {
+  font-size: 18px;
+  font-weight: bold;
+}
