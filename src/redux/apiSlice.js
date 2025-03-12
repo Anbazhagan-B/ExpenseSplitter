@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { apiCall } from "../services/apiService";
-import Constants from "../Constants/constants";
+import Constants from "../constants/constants";
 
 export const loginUser = createAsyncThunk("api/login", async (credentials) => {
   return await apiCall(Constants.LOGIN_API_URL, "POST", credentials);

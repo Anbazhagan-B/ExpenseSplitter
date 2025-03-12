@@ -22,7 +22,7 @@ const HomeContainer = () => {
   return (
     <div>
       <div className="home-container">
-        <h2>Welcome, {user?.username}</h2>
+        <h2>Welcome {user?.username.toUpperCase()}</h2>
         {/* {loading && <p>Loading expenses...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
         <ul>

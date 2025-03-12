@@ -1,0 +1,46 @@
+.dropdown-container {
+  position: relative;
+
+  .dropdown-header {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+  }
+
+  .dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    z-index: 10;
+    max-height: 200px;
+
+    .search-input {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 10px;
+      input {
+        flex: 0;
+        background: transparent;
+      }
+    }
+
+    .select-all {
+      font-weight: bold;
+    }
+  }
+}

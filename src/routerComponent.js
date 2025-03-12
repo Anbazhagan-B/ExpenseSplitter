@@ -1,5 +1,5 @@
 import LoginComponent from "./components/Login/loginComponent";
-import RegisterComponent from "./components/registerComponent/registerComponent";
+import RegisterComponent from "./components/RegisterComponent/registerComponent";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeContainer from "./container/home/homeContainer";
 import IndividualExpense from "./container/IndividualExpense/individual-expense";

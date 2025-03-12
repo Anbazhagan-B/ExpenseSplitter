@@ -3,7 +3,7 @@ import Loading from "./controls/Loading/Loading";
 import store from "./redux/store";
 import { Provider, useSelector } from "react-redux";
 import LoginComponent from "./components/Login/loginComponent";
-import RegisterComponent from "./components/registerComponent/registerComponent";
+import RegisterComponent from "./components/RegisterComponent/registerComponent";
 import {
   BrowserRouter as Router,
   Routes,

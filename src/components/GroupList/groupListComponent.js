@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaUsers } from "react-icons/fa";
 import "./groupListComponent.css";
 import useFetchData from "../../hooks/useFetchData";
-import Constants from "../../Constants/constants";
+import Constants from "../../constants/constants";
 
 const GroupListComponent = () => {
   const { data: groups, loading } = useFetchData(Constants.GET_ALL_GROUPS);

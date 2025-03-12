@@ -1,6 +1,6 @@
 import logo from "../../stock-vector-coin.jpg";
-import MyInput from "../../controls/MyInput/myInput";
-import Button from "../../controls/Button/button";
+import MyInput from "../../controls/MyInput/myInput.js";
+import Button from "../../controls/Button/button.js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../controls/Loading/Loading.js";

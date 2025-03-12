@@ -1,4 +1,4 @@
-import Constants from "../../Constants/constants";
+import Constants from "../../constants/constants";
 import useFetchData from "../../hooks/useFetchData";
 
 const SelectGroupList = ({ onSelectGroup }) => {
