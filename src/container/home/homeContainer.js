@@ -7,9 +7,11 @@ import { getExpenses } from "../../redux/apiSlice";
 import "./homeContainer.css";
 import useHeaderTitle from "../../hooks/useHeaderTitle";
 import GroupListComponent from "../../components/GroupList/groupListComponent";
+import useCustomAlert from "../../controls/CustomAlert/useCustomAlert";
 
 const HomeContainer = () => {
   const dispatch = useDispatch();
+  const { showAlert, alertComponent } = useCustomAlert();
   const navigate = useNavigate();
   const { expenses, loading, error, user } = useSelector((state) => state.api);
   useHeaderTitle("Split'u Machi");
@@ -18,10 +20,10 @@ const HomeContainer = () => {
       dispatch(getExpenses());
     }
   }, [user, dispatch]);
-
   return (
     <div>
       <div className="home-container">
+        {alertComponent}
         <h2>Welcome {user?.username.toUpperCase()}</h2>
         {/* {loading && <p>Loading expenses...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
@@ -37,7 +39,10 @@ const HomeContainer = () => {
           <Button
             buttonText="Groups"
             customclass="home-button"
-            OnClickHandle={() => navigate("/group-list")}
+            OnClickHandle={
+              () => showAlert("Home Loaded Successfully!")
+              // navigate("/group-list")
+            }
           ></Button>
           <Button
             buttonText="Add Group"
