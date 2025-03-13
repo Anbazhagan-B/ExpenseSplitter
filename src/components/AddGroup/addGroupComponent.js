@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import Constants from "../../Constants/constants";
+import Constants from "../../constants/constants";
 import { useNavigate } from "react-router-dom";
 import MyInput from "../../controls/MyInput/myInput";
 import "./addGroupComponent.css";
 import Button from "../../controls/Button/button";
 import useFetchData from "../../hooks/useFetchData";
+import MultiSelectDropdown from "../../controls/MultiSelectDropdown/MultiSelectDropdown";
 
 const AddGroupComponent = () => {
   const [groupName, setGroupName] = useState("");
@@ -71,19 +72,21 @@ const AddGroupComponent = () => {
             />
           </div>
 
-          <div className="members-list">
+          {/* <div className="members-list">
             <h3>Select Members:</h3>
             {users.map((user) => (
               <div className="member-item">
+                <label key={user.id}>{user.username}</label>
                 <input
                   type="checkbox"
                   value={user.id}
                   onChange={() => handleCheckboxChange(user.id)}
                 />
-                <label key={user.id}>{user.username}</label>
               </div>
             ))}
-          </div>
+          </div> */}
+
+          <MultiSelectDropdown usersList={users} />
 
           <Button type="submit" buttonText="Add Group" />
         </form>

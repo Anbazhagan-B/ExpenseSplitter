@@ -4,7 +4,7 @@ import "./add-expense.css";
 import { useNavigate } from "react-router-dom";
 import MyInput from "../../controls/MyInput/myInput";
 import Button from "../../controls/Button/button";
-import Constants from "../../Constants/constants";
+import Constants from "../../constants/constants";
 import { useSelector } from "react-redux";
 import UserList from "../UserList/userListComponent";
 import SelectGroupList from "../SelectGroupList/selectGroupListComponent";

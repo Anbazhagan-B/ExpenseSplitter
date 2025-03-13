@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Constants from "../../Constants/constants";
+import Constants from "../../constants/constants";
 import "./userListComponent.css";
 import useFetchData from "../../hooks/useFetchData";
 
