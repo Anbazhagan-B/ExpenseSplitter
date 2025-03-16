@@ -39,10 +39,7 @@ const HomeContainer = () => {
           <Button
             buttonText="Groups"
             customclass="home-button"
-            OnClickHandle={
-              () => showAlert("Home Loaded Successfully!")
-              // navigate("/group-list")
-            }
+            OnClickHandle={() => navigate("/group-list")}
           ></Button>
           <Button
             buttonText="Add Group"
