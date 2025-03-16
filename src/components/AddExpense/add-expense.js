@@ -8,6 +8,7 @@ import Constants from "../../constants/constants";
 import { useSelector } from "react-redux";
 import UserList from "../UserList/userListComponent";
 import SelectGroupList from "../SelectGroupList/selectGroupListComponent";
+import useCustomAlert from "../../controls/CustomAlert/useCustomAlert";
 
 const AddExpense = () => {
   const { user } = useSelector((state) => state.api);
@@ -18,6 +19,7 @@ const AddExpense = () => {
   const [description, setDescription] = useState("");
   const [showLoader, setShowLoader] = useState(false);
 
+  const { showAlert, alertComponent } = useCustomAlert();
   const navigate = useNavigate();
   const handleExpenseTypeChange = (event) => {
     setExpenseType(event.target.value);
@@ -62,19 +64,20 @@ const AddExpense = () => {
       });
       const result = await response.text();
       if (response.ok) {
-        alert(result);
+        showAlert(result);
         navigate("/home");
       } else {
-        alert("Error: " + result);
+        showAlert("Error: " + result);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Failed to add expense");
+      showAlert("Failed to add expense");
     }
   };
 
   return (
     <div className="add-expense-component">
+      {alertComponent}
       <form onSubmit={handleSubmit} className="expense-form">
         <div className="input-group">
           <FaUsers className="icon" />

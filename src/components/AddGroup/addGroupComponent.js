@@ -6,12 +6,14 @@ import "./addGroupComponent.css";
 import Button from "../../controls/Button/button";
 import useFetchData from "../../hooks/useFetchData";
 import MultiSelectDropdown from "../../controls/MultiSelectDropdown/MultiSelectDropdown";
+import useCustomAlert from "../../controls/CustomAlert/useCustomAlert";
 
 const AddGroupComponent = () => {
   const [groupName, setGroupName] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
   const { data: users, loading } = useFetchData(Constants.GET_USERS_WITH_ID);
   const navigate = useNavigate();
+  const { showAlert, alertComponent } = useCustomAlert();
 
   const handleCheckboxChange = (userId) => {
     setSelectedUsers((prev) =>
@@ -42,19 +44,20 @@ const AddGroupComponent = () => {
       console.log("API Response:", result);
 
       if (response.ok) {
-        alert("Group Added Successfully!");
+        showAlert("Group Added Successfully!");
         navigate("/group-list");
       } else {
-        alert("Error: " + result);
+        showAlert("Error: " + result);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Failed to add group");
+      showAlert("Failed to add group");
     }
   };
 
   return (
     <div className="group-container">
+      {alertComponent}
       <h2>Add Group</h2>
 
       {loading ? (
