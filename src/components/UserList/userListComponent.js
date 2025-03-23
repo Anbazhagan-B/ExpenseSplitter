@@ -1,16 +1,32 @@
-import React, { useEffect, useState } from "react";
-import Constants from "../../constants/constants";
-import "./userListComponent.css";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import useFetchData from "../../hooks/useFetchData";
+import Constants from "../../constants/constants";
 
-const UserList = ({ onSelectUser }) => {
-  const [selectedUser, setSelectedUser] = useState(null);
+import "./userListComponent.css";
+import {
+  setSelectedUser,
+  setUserSplits,
+} from "../../redux/actions/splitActions";
+
+const UserList = ({ onSelectUser, onSelectedUserAmountChange }) => {
+  const { user } = useSelector((state) => state.api);
+  const { splitType, selectedUserId, userSplits } = useSelector(
+    (state) => state.split
+  );
+  const dispatch = useDispatch();
 
   const { data: users, loading } = useFetchData(Constants.GET_USERS_WITH_ID);
 
   const handleUserSelection = (userId) => {
-    setSelectedUser(userId);
+    dispatch(setSelectedUser(userId));
     onSelectUser(userId);
+    dispatch(setUserSplits({}));
+    onSelectedUserAmountChange(userId, 0);
+  };
+
+  const handleInputChange = (userId, value) => {
+    onSelectedUserAmountChange(userId, value);
   };
 
   return (
@@ -19,44 +35,56 @@ const UserList = ({ onSelectUser }) => {
         <p>Loading users...</p>
       ) : (
         <ul className="user-list">
-          {users.map((user) => (
-            <li
-              key={user.id}
-              className={`user-item ${
-                selectedUser === user.id ? "selected" : ""
-              }`}
-              onClick={() => handleUserSelection(user.id)}
-            >
-              <div
-                className="user-icon"
-                style={{ backgroundColor: getColor(user.username) }}
+          <li className="user-item selected">
+            <div className="user-icon">
+              {user.username.charAt(0).toUpperCase()}
+            </div>
+            <span className="user-name">{user.username} (You)</span>
+            <span className="user-amount">{userSplits[user.id] || "0.00"}</span>
+          </li>
+
+          {users
+            .filter((u) => u.id !== user.id)
+            .map((otherUser) => (
+              <li
+                key={otherUser.id}
+                className={`user-item ${
+                  selectedUserId === otherUser.id ? "selected" : ""
+                }`}
               >
-                {user.username.charAt(0).toUpperCase()}
-              </div>
-              <span className="user-name">{user.username}</span>
-              <input
-                type="radio"
-                name="selectedUser"
-                checked={selectedUser === user.id}
-                onChange={() => handleUserSelection(user.id)}
-              />
-            </li>
-          ))}
+                <div className="user-icon">
+                  {otherUser.username.charAt(0).toUpperCase()}
+                </div>
+                <span className="user-name">{otherUser.username}</span>
+
+                {splitType === "Percentage" || splitType === "Amount" ? (
+                  <input
+                    type="number"
+                    className="split-input"
+                    placeholder={splitType === "Percentage" ? "%" : "$"}
+                    onChange={(e) =>
+                      handleInputChange(otherUser.id, e.target.value)
+                    }
+                    disabled={selectedUserId !== otherUser.id}
+                  />
+                ) : (
+                  <span className="user-amount">
+                    {userSplits[otherUser.id] || "0.00"}
+                  </span>
+                )}
+
+                <input
+                  type="radio"
+                  name="selectedUser"
+                  checked={selectedUserId === otherUser.id}
+                  onChange={() => handleUserSelection(otherUser.id)}
+                />
+              </li>
+            ))}
         </ul>
       )}
     </div>
   );
 };
 
-const getColor = (name) => {
-  const colors = [
-    "#A5D6A7",
-    "#90CAF9",
-    "#F48FB1",
-    "#FFAB91",
-    "#CE93D8",
-    "#FFCC80",
-  ];
-  return colors[name.charCodeAt(0) % colors.length];
-};
 export default UserList;

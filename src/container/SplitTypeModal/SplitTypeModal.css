@@ -1,0 +1,81 @@
+/* .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.split-type-options {
+  display: flex;
+  .split-option-buttons {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    background: white;
+    color: black;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    &.selected {
+      background: silver;
+    }
+  }
+}
+
+.split-values {
+  margin-top: 10px;
+}
+
+.split-input {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+.split-username {
+  width: 100%;
+  color: black;
+}
+
+.split-input input {
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-actions {
+  margin-top: 15px;
+}
+
+.confirm-btn {
+  background: #5cb85c;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-btn {
+  background: #d9534f;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+} */
