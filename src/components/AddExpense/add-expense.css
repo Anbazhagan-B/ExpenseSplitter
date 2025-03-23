@@ -16,6 +16,24 @@
   align-items: center;
   padding: 10px;
   border: medium solid black;
+  &.expense-type-space-arounnd {
+    justify-content: space-around;
+  }
+  .split-type-options {
+    display: flex;
+    column-gap: 9px;
+    height: 25px;
+    .split-option-buttons {
+      background: rgb(231, 230, 230);
+      border: none;
+      color: black;
+      font-size: 10px;
+      &.selected {
+        background: black;
+        color: white;
+      }
+    }
+  }
 }
 
 .icon {

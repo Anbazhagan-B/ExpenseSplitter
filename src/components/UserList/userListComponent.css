@@ -10,6 +10,9 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
+  .user-amount {
+    color: black;
+  }
 }
 
 .user-item {
@@ -30,7 +33,8 @@
   height: 40px;
   font-size: 18px;
   font-weight: bold;
-  color: black;
+  background: black;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;

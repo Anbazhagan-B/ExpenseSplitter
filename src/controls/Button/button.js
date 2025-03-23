@@ -6,7 +6,7 @@ const Button = (props) => {
   return (
     <button
       type={type}
-      className={"text-properties " + customclass ? customclass : ""}
+      className={`custom-button text-properties ${customclass || ""}`}
       onClick={OnClickHandle}
     >
       {buttonText}
