@@ -17,6 +17,7 @@ import GroupListContainer from "./container/GroupList/groupListContainer";
 import HeaderContainer from "./container/Header/headerContainer";
 import FooterComponent from "./container/Footer/footerComponent";
 import HomeContainer from "./container/Home/homeContainer";
+import GroupExpenseList from "./container/GroupExpenseList/group-expense";
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
             <Route path="/add-expense" element={<AddExpenseContainer />} />
             <Route path="/add-group" element={<AddGroupContainer />} />
             <Route path="/group-list" element={<GroupListContainer />} />
+            <Route
+              path="/group-expenses/:groupId"
+              element={<GroupExpenseList />}
+            />
           </Routes>
           <DynamicFooter />
         </Router>

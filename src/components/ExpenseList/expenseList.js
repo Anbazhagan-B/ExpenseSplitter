@@ -3,13 +3,19 @@ import "./expenseList.css";
 import ExpenseItem from "../ExpenseItem/expenseitem";
 import useFetchData from "../../hooks/useFetchData";
 const ExpenseList = (props) => {
-  const { userId } = props;
+  const { id } = props;
 
-  const {
-    data: expenses,
-    loading,
-    error,
-  } = useFetchData(`http://localhost:8024/expenses/user/${userId}`, [userId]);
+  const getExpenseFetechUrl = (fetchType) => {
+    if (fetchType == "GROUP") {
+      return `http://localhost:8024/expenses/userExpenses/${id}`;
+    } else {
+      return `http://localhost:8024/expenses/groupExpenses/${id}`;
+    }
+  };
+
+  const url = getExpenseFetechUrl(props.fetchType);
+
+  const { data: expenses, loading, error } = useFetchData(url, [id]);
 
   const groupedExpenses = useMemo(() => {
     return expenses.reduce((acc, expense) => {
