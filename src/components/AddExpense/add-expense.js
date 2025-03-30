@@ -24,7 +24,7 @@ const AddExpense = () => {
   const { showAlert, alertComponent } = useCustomAlert();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.api);
-  const { splitType, totalAmount, selectedUserId } = useSelector(
+  const { splitType, totalAmount, selectedUserId, userSplits } = useSelector(
     (state) => state.split
   );
 
@@ -63,6 +63,8 @@ const AddExpense = () => {
             paidById: user.id,
             participantIds: [user.id, selectedUserId],
             expenseType: "INDIVIDUAL",
+            splitType: splitType.toUpperCase(),
+            participants: buildParticipants(),
           }
         : {
             description,
@@ -92,6 +94,28 @@ const AddExpense = () => {
     }
   };
 
+  const buildParticipants = () => {
+    const participants = [user.id, selectedUserId];
+    return participants.map((id) => {
+      const paidShare = id === user.id ? parseFloat(totalAmount) : 0;
+      const value = userSplits[id] || 0;
+
+      if (splitType === "Percentage") {
+        return {
+          participantId: id,
+          paidShare,
+          percentageShare: parseFloat(value),
+        };
+      } else {
+        return {
+          participantId: id,
+          paidShare,
+          owedShare: parseFloat(value),
+        };
+      }
+    });
+  };
+
   const assignAmountBasedOnSplitType = (selectedId, value) => {
     if (!selectedId) return;
     let splits = { [user.id]: 0 };
@@ -103,8 +127,8 @@ const AddExpense = () => {
         break;
       case "Percentage":
         const percent = parseFloat(value) || 0;
-        splits[user.id] = ((totalAmount * (100 - percent)) / 100).toFixed(2);
-        splits[selectedId] = ((totalAmount * percent) / 100).toFixed(2);
+        splits[user.id] = 100 - percent;
+        splits[selectedId] = percent;
         break;
       case "Amount":
         const amt = parseFloat(value) || 0;
