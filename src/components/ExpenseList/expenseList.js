@@ -7,9 +7,9 @@ const ExpenseList = (props) => {
 
   const getExpenseFetechUrl = (fetchType) => {
     if (fetchType == "GROUP") {
-      return `http://localhost:8024/expenses/userExpenses/${id}`;
-    } else {
       return `http://localhost:8024/expenses/groupExpenses/${id}`;
+    } else {
+      return `http://localhost:8024/expenses/userExpenses/${id}`;
     }
   };
 
